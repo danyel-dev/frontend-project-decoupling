@@ -26,7 +26,7 @@ export default function App() {
   return (
     <div className="App">
       {lists.map(list =>
-          <ListComponent key={list.id} list={list} />
+          <ListComponent key={list.id} listName={list.name} items={list.item_set} />
       )}
     </div>
   );

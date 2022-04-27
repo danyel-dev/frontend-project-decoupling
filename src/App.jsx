@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+
+import ListComponent from './components/ListComponent';
 
 
 export default function App() {
@@ -9,17 +11,14 @@ export default function App() {
     const fetchListas = async () => {
       const { data } = await axios.get('http://127.0.0.1:8000/list/');
       setListas(data)
-      console.log(listas)
     } 
     
     fetchListas()
-  }, [])
+  }, [listas])
   
   return (
     <div className="App">
-      { listas.map(item => 
-        <p>{ item.name }</p>
-      ) }
+      <ListComponent />
     </div>
   );
 }

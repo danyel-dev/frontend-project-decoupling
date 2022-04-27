@@ -9,7 +9,14 @@ export default function App() {
   
   useEffect(() => {
     const fetchListas = async () => {
-      const { data } = await axios.get('http://127.0.0.1:8000/list/');
+      const config = {
+        headers: {
+          'content-type': 'Application/json',
+          'Authorization': 'Token 8322fe38adf65966cf3308e1a15024657c1e389b'
+        }
+      }
+
+      const { data } = await axios.get('http://127.0.0.1:8000/list/', config);
       setListas(data)
     } 
     
@@ -18,8 +25,7 @@ export default function App() {
   
   return (
     <div className="App">
-      <ListComponent ListName='Minha lista 1' />
-      <ListComponent ListName='Minha lista 2' />
+      
     </div>
   );
 }

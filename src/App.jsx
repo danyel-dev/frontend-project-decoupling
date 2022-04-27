@@ -5,10 +5,10 @@ import ListComponent from './components/ListComponent';
 
 
 export default function App() {
-  const [listas, setListas] = useState([])
+  const [lists, setlists] = useState([])
   
   useEffect(() => {
-    const fetchListas = async () => {
+    const fetchlists = async () => {
       const config = {
         headers: {
           'content-type': 'Application/json',
@@ -17,15 +17,17 @@ export default function App() {
       }
 
       const { data } = await axios.get('http://127.0.0.1:8000/list/', config);
-      setListas(data)
+      setlists(data)
     } 
     
-    fetchListas()
-  }, [listas])
+    fetchlists()
+  }, [])
   
   return (
     <div className="App">
-      
+      {lists.map(list =>
+          <ListComponent key={list.id} list={list} />
+      )}
     </div>
   );
 }

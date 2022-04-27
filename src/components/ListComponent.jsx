@@ -1,14 +1,15 @@
 import ItemComponent from "./ItemComponent";
 
 
-export default function ListComponent(props) {
+export default function ListComponent({ list }) {
     return (
         <div>
-            <h1>{ props.ListName }</h1>
+            <h1>{ list.name }</h1>
 
             <ul>
-                <ItemComponent name="item 1" />
-                <ItemComponent name="item 2" />
+                { list.item_set.map(item => 
+                    <ItemComponent key={ item.id } item={ item } />
+                ) }
             </ul>
         </div>
     );

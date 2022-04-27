@@ -1,5 +1,5 @@
-export default function ItemComponent(props) {
+export default function ItemComponent({ item }) {
     return (
-        <li>{ props.name }</li>
+        <li>{ item.name }</li>
     );
 };

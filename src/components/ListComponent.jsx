@@ -1,9 +1,15 @@
-export default function ListComponent() {
+import ItemComponent from "./ItemComponent";
+
+
+export default function ListComponent(props) {
     return (
-        <ul>
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-        </ul>
+        <div>
+            <h1>{ props.ListName }</h1>
+
+            <ul>
+                <ItemComponent name="item 1" />
+                <ItemComponent name="item 2" />
+            </ul>
+        </div>
     );
-}
+};

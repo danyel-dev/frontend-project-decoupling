@@ -18,7 +18,8 @@ export default function App() {
   
   return (
     <div className="App">
-      <ListComponent />
+      <ListComponent ListName='Minha lista 1' />
+      <ListComponent ListName='Minha lista 2' />
     </div>
   );
 }

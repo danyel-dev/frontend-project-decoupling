@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import ListComponent from './components/ListComponent';
+import LoginComponent from './components/LoginComponent';
 
 
 export default function App() {
@@ -12,7 +13,7 @@ export default function App() {
       const config = {
         headers: {
           'content-type': 'Application/json',
-          'Authorization': 'Token 57252f4c68b458f3175c881d0c2cf04b03140f79'
+          'Authorization': 'Token ' + localStorage.getItem('token')
         }
       }
 
@@ -21,13 +22,19 @@ export default function App() {
     } 
     
     fetchlists()
-  }, [])
+  }, [lists])
   
-  return (
-    <div className="App">
-      {lists.map(list =>
-          <ListComponent key={list.id} listName={list.name} items={list.item_set} />
-      )}
-    </div>
-  );
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    return <LoginComponent />
+  } else {
+      return (
+        <div className="App">
+          {lists.map(list =>
+              <ListComponent key={list.id} listName={list.name} items={list.item_set} />
+          )}
+        </div>
+      );
+    }
 }

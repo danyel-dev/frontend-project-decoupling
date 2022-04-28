@@ -12,7 +12,7 @@ export default function App() {
       const config = {
         headers: {
           'content-type': 'Application/json',
-          'Authorization': 'Token 8322fe38adf65966cf3308e1a15024657c1e389b'
+          'Authorization': 'Token 57252f4c68b458f3175c881d0c2cf04b03140f79'
         }
       }
 

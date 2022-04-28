@@ -1,5 +1,8 @@
-export default function ItemComponent({ item }) {
+export default function ItemComponent({ itemName, status }) {
     return (
-        <li>{ item.name }</li>
+        <li>
+            <p>{itemName}</p>
+            status: {status ? <small>Finalizado</small>: <small>Não finalizado</small> }
+        </li>
     );
 };

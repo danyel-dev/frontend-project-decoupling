@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import ListComponent from './components/ListComponent';
-import LoginComponent from './components/LoginComponent';
 
 
-export default function App() {
+export default function Core() {
   const [lists, setlists] = useState([])
   
   useEffect(() => {
@@ -22,19 +21,13 @@ export default function App() {
     } 
     
     fetchlists()
-  }, [lists])
-  
-  const token = localStorage.getItem('token');
+  }, [])
 
-  if (!token) {
-    return <LoginComponent />
-  } else {
-      return (
-        <div className="App">
-          {lists.map(list =>
-              <ListComponent key={list.id} listName={list.name} items={list.item_set} />
-          )}
-        </div>
-      );
-    }
+  return (
+    <div className="core">
+      {lists.map(list =>
+          <ListComponent key={list.id} listName={list.name} items={list.item_set} />
+      )}
+    </div>
+  );
 }

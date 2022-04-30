@@ -21,6 +21,11 @@ export default function LoginComponent() {
         event.preventDefault()
     };
 
+    function logout() {
+        localStorage.removeItem('token')
+        setToken('')
+    }
+
     function handleUsernameChange(event) {
         setInputUsername(event.target.value)
     }
@@ -45,5 +50,12 @@ export default function LoginComponent() {
                 <button>Submit</button>
             </form>
         )    
-    } else return <Core />
+    } else {
+        return (
+            <div>
+                <Core />
+                <button onClick={logout}>Logout</button>
+            </div>
+        )
+    }
 };

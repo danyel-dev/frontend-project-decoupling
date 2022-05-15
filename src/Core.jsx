@@ -16,7 +16,7 @@ export default function Core() {
         }
       }
 
-      const { data } = await axios.get('https://example-deploy-django.herokuapp.com//list/', config);
+      const { data } = await axios.get('https://example-deploy-django.herokuapp.com/list/', config);
       setlists(data)
     } 
     

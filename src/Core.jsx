@@ -16,7 +16,7 @@ export default function Core() {
         }
       }
 
-      const { data } = await axios.get('http://127.0.0.1:8000/list/', config);
+      const { data } = await axios.get('https://example-deploy-django.herokuapp.com//list/', config);
       setlists(data)
     } 
     

@@ -1,9 +1,10 @@
 import ItemComponent from "./ItemComponent";
+import '../styles/listComponent.css'
 
 
 export default function ListComponent({ listName, items }) {
     return (
-        <div>
+        <div className="list-container">
             <h1>{listName}</h1>
 
             <ul>

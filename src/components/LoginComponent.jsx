@@ -54,7 +54,7 @@ export default function LoginComponent() {
         return (
             <div>
                 <Core />
-                <button onClick={logout}>Logout</button>
+                {/* <button onClick={logout}>Logout</button> */}
             </div>
         )
     }

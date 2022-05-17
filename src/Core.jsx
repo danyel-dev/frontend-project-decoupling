@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import ListComponent from './components/ListComponent';
 
+import './styles/core.css'
+
 
 export default function Core() {
   const [lists, setlists] = useState([])
@@ -24,10 +26,12 @@ export default function Core() {
   }, [])
 
   return (
-    <div className="core">
-      {lists.map(list =>
+    <div className="main">
+      <div className='main-lists'>
+        {lists.map(list =>
           <ListComponent key={list.id} listName={list.name} items={list.item_set} />
-      )}
+        )}
+      </div>
     </div>
   );
 }

@@ -1,8 +1,10 @@
-export default function ItemComponent({ itemName, status }) {
+import '../styles/itemComponent.css'
+
+
+export default function ItemComponent({ itemName }) {
     return (
-        <li>
-            <p>{itemName}</p>
-            status: {status ? <small>Finalizado</small>: <small>Não finalizado</small> }
+        <li className='item'>
+            <p><input type="checkbox" /> {itemName}</p>
         </li>
     );
 };

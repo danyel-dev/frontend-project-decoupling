@@ -1,5 +1,11 @@
 .list-container {
     width: 100%;
+    margin-bottom: 30px;
+}
+
+.list-container h1 {
+    margin-bottom: -5px !important;
+    font: bold 1.5em sans-serif;
 }
 
 .list-container ul {

@@ -10,7 +10,7 @@ export default function LoginComponent() {
     const [token, setToken] = useState('')
 
     function HandleSubmit(event) {
-        axios.post('https://example-deploy-django.herokuapp.com/api-token-auth/', {
+        axios.post('http://127.0.0.1:8000/api-token-auth/', {
             username: inputUsername,
             password: inputPassword,
         }).then(response => {

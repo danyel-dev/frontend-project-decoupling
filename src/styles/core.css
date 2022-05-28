@@ -1,6 +1,5 @@
 .main {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -9,4 +8,7 @@
 
 .main-lists {
     width: 80%;
+
+    display: flex;
+    gap: 1rem;
 }

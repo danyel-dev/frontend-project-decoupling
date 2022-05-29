@@ -20,6 +20,30 @@ h1.title-list {
     margin-top: 15px;
 }
 
+form.form-add-todo {
+    margin-top: 20px;
+}
+
+form.form-add-todo input {
+    height: 25px;
+    outline: 0;
+    font-size: 15px;
+    padding-left: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+form.form-add-todo button {
+    margin-left: 10px;
+    padding: 0 10px;
+    border-radius: 2px;
+    height: 29px;
+    border: 0;
+    background-color: rgb(89, 233, 89);
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+}
+
 ul.list-todos {
     list-style-type: none;
     padding: 0;

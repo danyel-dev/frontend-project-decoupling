@@ -29,7 +29,7 @@ export default function Core() {
     <div className="main">
       <div className='main-lists'>
         {lists.map(list =>
-          <ListComponent key={list.id} listName={list.name} items={list.item_set} />
+          <ListComponent key={list.id} list={list} />
         )}
       </div>
     </div>

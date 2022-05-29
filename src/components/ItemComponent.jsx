@@ -1,12 +1,12 @@
 import '../styles/itemComponent.css'
 
 
-export default function ItemComponent({ itemName, status }) {
+export default function ItemComponent({ item }) {
     return (
         <li className='item'>
             <p>
-                {status? <input type="checkbox" checked />: <input type="checkbox" />}
-                { itemName }
+                {item.status? <input type="checkbox" checked />: <input type="checkbox" />}
+                { item.name }
             </p>
         </li>
     );

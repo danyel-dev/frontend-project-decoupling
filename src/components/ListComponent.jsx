@@ -1,32 +1,51 @@
 import ItemComponent from "./ItemComponent";
 import '../styles/listComponent.css'
+import * as React from 'react';
+
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: 0,
+  boxShadow: 24,
+  p: 4,
+};
 
 
-export default function ListComponent({ listName, items }) {
-    function handleChangeModal() {
-        const modal = document.querySelector('.modal')
-        modal.classList.toggle('change-modal')
-    }
-
-    function closedModal(e) {
-        if (e.target.id == 'modal') {
-            handleChangeModal()
-        }
-    }
+export default function ListComponent({ list }) {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     return (
         <div className="list-container">
-            <h1>{ listName }</h1>
+            <h1 className="title-list">{ list.name }</h1>
 
-            <button onClick={handleChangeModal}>Ver tarefas</button>
-
-            <div id="modal" className="modal change-modal" onClick={closedModal}>
-                <div className="modal-todos">
-                    <button onClick={handleChangeModal}>x</button>
+            <Button onClick={handleOpen}>Open modal</Button>
+            
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <h1 className="title-list">{ list.name }</h1>
                     
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi maiores asperiores vero assumenda distinctio voluptate quam possimus dignissimos. Veniam vitae quisquam maiores pariatur consequatur amet totam, odio fugit quia debitis.</p>
-                </div>
-            </div>
+                    <ul className="list-todos">
+                        {list.item_set.map(item => 
+                            <ItemComponent item={item} />    
+                        )}
+                    </ul>
+                </Box>
+            </Modal>
         </div>
     );
 };

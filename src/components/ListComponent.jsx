@@ -1,6 +1,8 @@
+import * as React from 'react';
+import axios from 'axios';
+
 import ItemComponent from "./ItemComponent";
 import '../styles/listComponent.css'
-import * as React from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -25,6 +27,26 @@ export default function ListComponent({ list }) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    function handleAditionTodo(event) {
+        // Não esquecer de mudar o endereço quando tiver em produção
+        const config = {
+            headers: {
+              'content-type': 'Application/json',
+              'Authorization': 'Token ' + localStorage.getItem('token')
+            }
+        }
+
+        axios.post('http://127.0.0.1:8000/item/', {
+            List: list.url,
+            name: 'Fazer baião',
+            done: true,
+        }, config).then((response) => {
+            console.log(response.data)
+        })
+
+        event.preventDefault()
+    }
+    
     return (
         <div className="list-container">
             <h1 className="title-list">{ list.name }</h1>
@@ -40,7 +62,7 @@ export default function ListComponent({ list }) {
                 <Box sx={style}>
                     <h1 className="title-list">{ list.name }</h1>
                     
-                    <form method="POST" className="form-add-todo">
+                    <form method="POST" className="form-add-todo" onSubmit={ handleAditionTodo }>
                         <input type="text" placeholder="Digite aqui o nome da tarefa" />
                         <button>Criar</button>
                     </form>

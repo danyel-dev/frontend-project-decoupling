@@ -15,10 +15,12 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: '40%',
+    minWidth: 400,
     bgcolor: 'background.paper',
     border: 0,
     boxShadow: 24,
+    borderRadius: '5px',
     p: 4,
 };
 
@@ -78,12 +80,16 @@ export default function ListComponent({ list, handleAdditionTodo }) {
                         />
                         <button>Criar</button>
                     </form>
-
-                    <ul className="list-todos">
-                        {list.item_set.map(item => 
-                            <ItemComponent item={item} />    
-                        )}
-                    </ul>
+                    
+                    {list.item_set.length == 0?
+                        <h4 className='list-empty'>está lista está vazia</h4>
+                        :
+                        <ul className="list-todos">
+                            {list.item_set.map(item => 
+                                <ItemComponent item={item} />    
+                            )}
+                        </ul>
+                    }
                 </Box>
             </Modal>
         </div>

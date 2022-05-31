@@ -16,10 +16,6 @@ h1.title-list {
     text-align: center;
 }
 
-.list-container button {
-    margin-top: 15px;
-}
-
 form.form-add-todo {
     margin-top: 20px;
 }
@@ -30,7 +26,6 @@ form.form-add-todo input {
     font-size: 15px;
     padding-left: 10px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
 }
 
 form.form-add-todo button {
@@ -42,9 +37,18 @@ form.form-add-todo button {
     background-color: rgb(89, 233, 89);
     color: rgba(0, 0, 0, 0.8);
     font-weight: bold;
+    cursor: pointer;
 }
 
 ul.list-todos {
     list-style-type: none;
     padding: 0;
+    margin-top: 20px;
+}
+
+h4.list-empty {
+    font-family: sans-serif;
+    margin-top: 20px;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: normal;
 }

@@ -6,7 +6,9 @@ export default function ItemComponent({ item }) {
         <li className='item'>
             {item.status? <input type="checkbox" checked />: <input type="checkbox" />}
             
-            <p>{ item.name }</p>
+            <p>
+                { item.name }
+            </p>
         </li>
     );
 };

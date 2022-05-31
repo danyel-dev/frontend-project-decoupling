@@ -1,5 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
+import { useState } from 'react';
 
 import ItemComponent from "./ItemComponent";
 import '../styles/listComponent.css'
@@ -22,12 +23,18 @@ const style = {
 };
 
 
-export default function ListComponent({ list }) {
+export default function ListComponent({ list, handleAdditionTodo }) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    function handleAditionTodo(event) {
+    const [inputTodo, setInputTodo] = useState("")
+
+    function handleChangeInputTodo(event) {
+        setInputTodo(event.target.value)
+    }
+
+    function handlePostTodo(event) {
         // Não esquecer de mudar o endereço quando tiver em produção
         const config = {
             headers: {
@@ -38,10 +45,11 @@ export default function ListComponent({ list }) {
 
         axios.post('http://127.0.0.1:8000/item/', {
             List: list.url,
-            name: 'Fazer baião',
+            name: inputTodo,
             done: true,
         }, config).then((response) => {
-            console.log(response.data)
+            const todo = response.data
+            handleAdditionTodo(list.id, todo)
         })
 
         event.preventDefault()
@@ -49,7 +57,7 @@ export default function ListComponent({ list }) {
     
     return (
         <div className="list-container">
-            <h1 className="title-list">{ list.name }</h1>
+            <h1 className="title-list">{list.name}</h1>
 
             <Button onClick={handleOpen}>Open modal</Button>
             
@@ -60,10 +68,14 @@ export default function ListComponent({ list }) {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <h1 className="title-list">{ list.name }</h1>
+                    <h1 className="title-list">{list.name}</h1>
                     
-                    <form method="POST" className="form-add-todo" onSubmit={ handleAditionTodo }>
-                        <input type="text" placeholder="Digite aqui o nome da tarefa" />
+                    <form method="POST" className="form-add-todo" onSubmit={handlePostTodo}>
+                        <input type="text"
+                            value={inputTodo}
+                            onChange={handleChangeInputTodo}
+                            placeholder="Digite aqui o nome da tarefa"
+                        />
                         <button>Criar</button>
                     </form>
 

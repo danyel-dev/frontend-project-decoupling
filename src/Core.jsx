@@ -8,7 +8,7 @@ import './styles/core.css'
 
 export default function Core() {
   const [lists, setlists] = useState([])
-  
+
   useEffect(() => {
     const fetchlists = async () => {
       const config = {
@@ -18,18 +18,35 @@ export default function Core() {
         }
       }
 
-      const { data } = await axios.get('http://127.0.0.1:8000/list/', config);
+      var { data } = await axios.get('http://127.0.0.1:8000/list/', config);
+      data = data.map(list => {
+        list.item_set = list.item_set.reverse()
+        return list
+      })
+      console.log(data)
       setlists(data)
     } 
     
     fetchlists()
   }, [])
 
+
+  function handleAdditionTodo(listId, todo) {
+    const newLists = lists.map(item => {
+      if (item.id === listId) {
+        item.item_set.unshift(todo)
+      }
+      return item
+    })
+
+    setlists(newLists)
+  }
+
   return (
     <div className="main">
       <div className='main-lists'>
         {lists.map(list =>
-          <ListComponent key={list.id} list={list} />
+          <ListComponent key={list.id} list={list} handleAdditionTodo={handleAdditionTodo} />
         )}
       </div>
     </div>

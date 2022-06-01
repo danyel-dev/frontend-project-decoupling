@@ -23,30 +23,18 @@ export default function Core() {
         list.item_set = list.item_set.reverse()
         return list
       })
-      console.log(data)
+
       setlists(data)
     } 
     
     fetchlists()
-  }, [])
-
-
-  function handleAdditionTodo(listId, todo) {
-    const newLists = lists.map(item => {
-      if (item.id === listId) {
-        item.item_set.unshift(todo)
-      }
-      return item
-    })
-
-    setlists(newLists)
-  }
+  }, [lists])
 
   return (
     <div className="main">
       <div className='main-lists'>
         {lists.map(list =>
-          <ListComponent key={list.id} list={list} handleAdditionTodo={handleAdditionTodo} />
+          <ListComponent key={list.id} list={list} />
         )}
       </div>
     </div>

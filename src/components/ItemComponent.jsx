@@ -1,14 +1,27 @@
 import '../styles/itemComponent.css'
+import axios from 'axios';
 
 
-export default function ItemComponent({ item }) {
+export default function ItemComponent({ item, listURL }) {
+    function handleChangeStatus() {
+        const config = {
+            headers: {
+              'content-type': 'Application/json',
+              'Authorization': 'Token ' + localStorage.getItem('token')
+            }
+        }
+
+        axios.put(`http://127.0.0.1:8000/item/${item.id}/`, {
+            List: listURL,
+            name: item.name,
+            done: !item.done,
+        }, config)
+    }
+
     return (
         <li className='item'>
-            {item.status? <input type="checkbox" checked />: <input type="checkbox" />}
-            
-            <p>
-                { item.name }
-            </p>
+            <input type="checkbox" onClick={handleChangeStatus} checked={item.done} />
+            <p>{item.name}</p>
         </li>
     );
 };

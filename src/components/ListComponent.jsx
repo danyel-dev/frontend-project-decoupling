@@ -15,7 +15,7 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '40%',
+    width: '35%',
     minWidth: 400,
     bgcolor: 'background.paper',
     border: 0,
@@ -25,13 +25,13 @@ const style = {
 };
 
 
-export default function ListComponent({ list, handleAdditionTodo }) {
+export default function ListComponent({ list }) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     const [inputTodo, setInputTodo] = useState("")
-
+    
     function handleChangeInputTodo(event) {
         setInputTodo(event.target.value)
     }
@@ -48,12 +48,10 @@ export default function ListComponent({ list, handleAdditionTodo }) {
         axios.post('http://127.0.0.1:8000/item/', {
             List: list.url,
             name: inputTodo,
-            done: true,
-        }, config).then((response) => {
-            const todo = response.data
-            handleAdditionTodo(list.id, todo)
-        })
+            done: false,
+        }, config)
 
+        setInputTodo("")
         event.preventDefault()
     }
     
@@ -69,8 +67,8 @@ export default function ListComponent({ list, handleAdditionTodo }) {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
-                    <h1 className="title-list">{list.name}</h1>
+                <Box sx={style} className='modal-padding'>
+                    <h1 className="title-list-modal">{list.name}</h1>
                     
                     <form method="POST" className="form-add-todo" onSubmit={handlePostTodo}>
                         <input type="text"
@@ -81,12 +79,12 @@ export default function ListComponent({ list, handleAdditionTodo }) {
                         <button>Criar</button>
                     </form>
                     
-                    {list.item_set.length == 0?
-                        <h4 className='list-empty'>está lista está vazia</h4>
+                    {list.item_set.length === 0?
+                        <h4 className='list-empty'>Está lista está vazia</h4>
                         :
                         <ul className="list-todos">
                             {list.item_set.map(item => 
-                                <ItemComponent item={item} />    
+                                <ItemComponent item={item} listURL={list.url} />
                             )}
                         </ul>
                     }

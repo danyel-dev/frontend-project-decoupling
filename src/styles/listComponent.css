@@ -10,10 +10,14 @@
     align-items: center;
 }
 
-h1.title-list {
+h1.title-list, h1.title-list-modal {
     font: bold 1.5em sans-serif;
-    margin: 0;
     text-align: center;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+h1.title-list-modal {
+    margin: 0 0 25px 0;
 }
 
 form.form-add-todo {
@@ -21,29 +25,32 @@ form.form-add-todo {
 }
 
 form.form-add-todo input {
-    height: 25px;
     outline: 0;
+    padding: 8px 0 8px 12px;
+    width: 320px;
     font-size: 15px;
-    padding-left: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
 }
 
 form.form-add-todo button {
     margin-left: 10px;
-    padding: 0 10px;
+    padding: 8px 12px 8px 12px;
     border-radius: 2px;
-    height: 29px;
     border: 0;
-    background-color: rgb(89, 233, 89);
-    color: rgba(0, 0, 0, 0.8);
-    font-weight: bold;
+    background-color: rgb(65, 170, 65);
+    color: white;
     cursor: pointer;
+    font-weight: bold;
 }
 
 ul.list-todos {
     list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
     padding: 0;
-    margin-top: 20px;
+    margin: 20px 0 0 0;
 }
 
 h4.list-empty {
@@ -52,3 +59,4 @@ h4.list-empty {
     color: rgba(0, 0, 0, 0.8);
     font-weight: normal;
 }
+

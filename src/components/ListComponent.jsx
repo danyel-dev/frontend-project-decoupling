@@ -48,7 +48,6 @@ export default function ListComponent({ list }) {
         axios.post('http://127.0.0.1:8000/item/', {
             List: list.url,
             name: inputTodo,
-            done: false,
         }, config)
 
         setInputTodo("")
@@ -84,7 +83,7 @@ export default function ListComponent({ list }) {
                         :
                         <ul className="list-todos">
                             {list.item_set.map(item => 
-                                <ItemComponent item={item} listURL={list.url} />
+                                <ItemComponent item={item} />
                             )}
                         </ul>
                     }

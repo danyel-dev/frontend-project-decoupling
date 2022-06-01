@@ -2,7 +2,7 @@ import '../styles/itemComponent.css'
 import axios from 'axios';
 
 
-export default function ItemComponent({ item, listURL }) {
+export default function ItemComponent({ item }) {
     function handleChangeStatus() {
         const config = {
             headers: {
@@ -12,7 +12,7 @@ export default function ItemComponent({ item, listURL }) {
         }
 
         axios.put(`http://127.0.0.1:8000/item/${item.id}/`, {
-            List: listURL,
+            List: item.List,
             name: item.name,
             done: !item.done,
         }, config)

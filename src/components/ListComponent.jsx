@@ -44,7 +44,7 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
             }
         }
 
-        axios.post('http://127.0.0.1:8000/item/', {
+        axios.post('https://example-deploy-django.herokuapp.com/item/', {
             List: list.url,
             name: inputTodo,
         }, config).then(({ data }) => {

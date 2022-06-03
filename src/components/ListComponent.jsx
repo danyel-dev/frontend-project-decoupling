@@ -14,9 +14,8 @@ const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
+    width: '40%',
     transform: 'translate(-50%, -50%)',
-    width: '35%',
-    minWidth: 300,
     bgcolor: 'background.paper',
     border: 0,
     boxShadow: 24,
@@ -25,7 +24,7 @@ const style = {
 };
 
 
-export default function ListComponent({ list }) {
+export default function ListComponent({ list, handleAdditionTodo, handleDeleteTodo, handleChangeStatus }) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -36,7 +35,7 @@ export default function ListComponent({ list }) {
         setInputTodo(event.target.value)
     }
 
-    function handlePostTodo(event) {
+    function PostTodo(event) {
         // Não esquecer de mudar o endereço quando tiver em produção
         const config = {
             headers: {
@@ -48,7 +47,9 @@ export default function ListComponent({ list }) {
         axios.post('http://127.0.0.1:8000/item/', {
             List: list.url,
             name: inputTodo,
-        }, config)
+        }, config).then(({ data }) => {
+            handleAdditionTodo(list.id, data)
+        })
 
         setInputTodo("")
         event.preventDefault()
@@ -66,17 +67,18 @@ export default function ListComponent({ list }) {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style} className='modal-padding'>
+                <Box sx={style} className="box-modal">
+                    <i className="fa-solid fa-xmark" onClick={handleClose}></i>
                     <h1 className="title-list-modal">{list.name}</h1>
                     
-                    <form method="POST" className="form-add-todo" onSubmit={handlePostTodo}>
+                    <form method="POST" className="form-add-todo" onSubmit={PostTodo}>
                         <input type="text"
                             value={inputTodo}
                             onChange={handleChangeInputTodo}
                             placeholder="Digite aqui o nome da tarefa"
                         />
                         <button className='add-todo'>
-                            <i class="fa-solid fa-circle-plus"></i>
+                            <i className="fa-solid fa-circle-plus"></i>
                             <span>Criar</span>
                         </button>
                     </form>
@@ -86,7 +88,13 @@ export default function ListComponent({ list }) {
                         :
                         <ul className="list-todos">
                             {list.item_set.map(item => 
-                                <ItemComponent item={item} />
+                                <ItemComponent
+                                    key={item.id}
+                                    listId={list.id}
+                                    item={item}
+                                    handleDeleteTodo={handleDeleteTodo}
+                                    handleChangeStatus={handleChangeStatus}
+                                />
                             )}
                         </ul>
                     }

@@ -10,6 +10,17 @@
     align-items: center;
 }
 
+i.fa-xmark {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    cursor: pointer;
+}
+
+.box-modal {
+    width: '90%' !important;
+}
+
 h1.title-list, h1.title-list-modal {
     font: bold 1.5em sans-serif;
     text-align: center;
@@ -17,7 +28,7 @@ h1.title-list, h1.title-list-modal {
 }
 
 h1.title-list-modal {
-    margin: 0 0 25px 0;
+    margin: 10px 0 25px 0;
 }
 
 form.form-add-todo {
@@ -64,4 +75,3 @@ h4.list-empty {
     color: rgba(0, 0, 0, 0.8);
     font-weight: normal;
 }
-

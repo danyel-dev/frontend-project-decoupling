@@ -4,12 +4,11 @@ import moment from 'moment';
 import 'moment/locale/pt-br'
 
 
-export default function ItemComponent({ item }) {
-    // 2022-06-01T23:57:44.987350
+export default function ItemComponent({ listId, item, handleDeleteTodo, handleChangeStatus }) {
     moment.locale('pt-br')
     const data = moment(item.created_at).format('LLLL')
     
-    function handleChangeStatus() {
+    function PutStatus() {
         const config = {
             headers: {
               'content-type': 'Application/json',
@@ -21,10 +20,12 @@ export default function ItemComponent({ item }) {
             List: item.List,
             name: item.name,
             done: !item.done,
-        }, config)
+        }, config).then(() => {
+            handleChangeStatus(listId, item.id)
+        })
     }
 
-    function handleDeleteTodo() {
+    function DeleteTodo() {
         const config = {
             headers: {
                 'content-type': 'Application/json',
@@ -32,14 +33,16 @@ export default function ItemComponent({ item }) {
             }
         }
 
-        axios.delete(`http://127.0.0.1:8000/item/${item.id}/`, config)
+        axios.delete(`http://127.0.0.1:8000/item/${item.id}/`, config).then(() => {
+            handleDeleteTodo(listId, item.id)
+        })
     }
 
 
     return (
         <li className='item' style={item.done === true? {backgroundColor: 'rgba(0, 0, 0, 0.25)'}: {backgroundColor: 'rgba(0, 0, 0, 0.1)'}}>
             <div className='checkbox-name'>
-                <input type="checkbox" onClick={handleChangeStatus} checked={item.done} />
+                <input type="checkbox" onChange={PutStatus} checked={item.done} />
                 <p style={item.done === true? {textDecoration: 'line-through'}: {}}>{item.name}</p>
             </div>
 
@@ -47,8 +50,8 @@ export default function ItemComponent({ item }) {
                 <small className='date'>{data}</small>
 
                 <p className='icons'>
-                    <i class="fa-solid fa-pen-to-square"></i>
-                    <i class="fa-solid fa-trash" onClick={handleDeleteTodo}></i>
+                    <i className="fa-solid fa-pen-to-square"></i>
+                    <i className="fa-solid fa-trash" onClick={DeleteTodo}></i>
                 </p>
             </div>
         </li>

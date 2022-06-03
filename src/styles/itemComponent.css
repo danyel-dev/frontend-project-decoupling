@@ -1,13 +1,51 @@
 .item {
     display: flex;
-    padding: 10px;
+    gap: 7px;
+    flex-direction: column;
+    padding: 8px 10px;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.1);
 }
 
-.item p {
-    margin: 0 0 0 5px;
+div.checkbox-name {
+    display: flex;
+    align-items: center;
+}
+
+div.checkbox-name p {
+    margin: 0 0 0 7px;
     font-family: 'sans-serif';
     word-break: break-all;
     font-size: 15px;
+}
+
+div.checkbox-name input[type='checkbox'] {
+    margin: 0px;
+}
+
+div.date-edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.date-edit small.date {
+    font-weight:  bold;
+    color: rgba(0, 0, 0, 0.45);
+    font-family: sans-serif;
+}
+
+p.icons {
+    display: flex;
+    gap: 1em;
+    margin: 0;
+}
+
+p.icons .fa-pen-to-square {
+    color: rgb(71, 148, 71);
+    cursor: pointer;
+}
+
+p.icons .fa-trash {
+    color: rgb(238, 54, 54);
+    cursor: pointer;
 }

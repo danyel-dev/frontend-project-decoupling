@@ -16,7 +16,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '35%',
-    minWidth: 400,
+    minWidth: 300,
     bgcolor: 'background.paper',
     border: 0,
     boxShadow: 24,
@@ -75,7 +75,10 @@ export default function ListComponent({ list }) {
                             onChange={handleChangeInputTodo}
                             placeholder="Digite aqui o nome da tarefa"
                         />
-                        <button>Criar</button>
+                        <button className='add-todo'>
+                            <i class="fa-solid fa-circle-plus"></i>
+                            <span>Criar</span>
+                        </button>
                     </form>
                     
                     {list.item_set.length === 0?

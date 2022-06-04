@@ -17,10 +17,6 @@ i.fa-xmark {
     cursor: pointer;
 }
 
-.box-modal {
-    width: '90%' !important;
-}
-
 h1.title-list, h1.title-list-modal {
     font: bold 1.5em sans-serif;
     text-align: center;
@@ -34,30 +30,27 @@ h1.title-list-modal {
 form.form-add-todo {
     display: flex;
     margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    position: relative;
 }
 
 form.form-add-todo input {
     outline: 0;
-    padding: 7px 0 7px 12px;
+    padding: 7px 0 7px 32px;
     width: 320px;
     font-size: 15px;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 3px;
 }
 
-button.add-todo {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-left: 10px;
-    padding: 7px 15px 7px 15px;
-    border-radius: 20px;
-    border: 0;
-    background-color: rgba(0, 0, 255, 0.6);
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
+form.form-add-todo i {
+    color: blueviolet;
+    position: absolute;
+    font-size: 18px;
+    left: 9px;
+    top: 7px;
 }
 
 ul.list-todos {
@@ -74,4 +67,17 @@ h4.list-empty {
     margin-top: 20px;
     color: rgba(0, 0, 0, 0.8);
     font-weight: normal;
+}
+
+@media(max-width: 1000px) {
+    .box-modal {
+        width: 60% !important;
+    }
+}
+
+@media(max-width: 600px) {
+    .box-modal {
+        width: 90% !important;
+        padding: 15px 10px !important;
+    }
 }

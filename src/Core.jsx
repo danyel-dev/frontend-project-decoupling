@@ -44,8 +44,8 @@ export default function Core() {
 
   function handleDeleteTodo(listId, todoId) {
     const newLists = lists.map(list => {
-      if (list.id == listId) 
-        list.item_set = list.item_set.filter(item => item.id != todoId)
+      if (list.id === listId) 
+        list.item_set = list.item_set.filter(item => item.id !== todoId)
       return list
     })
     
@@ -54,9 +54,9 @@ export default function Core() {
   
   function handleChangeStatus(listId, todoId) {
     const newLists = lists.map(list => {
-      if (list.id == listId) { 
+      if (list.id === listId) { 
         list.item_set = list.item_set.map(item => {
-          if(item.id == todoId) 
+          if(item.id === todoId) 
             item.done = !item.done
           return item
         })

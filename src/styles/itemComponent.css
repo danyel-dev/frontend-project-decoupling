@@ -2,7 +2,7 @@
     display: flex;
     gap: 7px;
     flex-direction: column;
-    padding: 8px 10px;
+    padding: 10px;
     border-radius: 5px;
 }
 
@@ -26,10 +26,11 @@ div.date-edit {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 }
 
 div.date-edit small.date {
-    font-weight:  bold;
+    font-weight: bold;
     color: rgba(0, 0, 0, 0.45);
     font-family: sans-serif;
 }

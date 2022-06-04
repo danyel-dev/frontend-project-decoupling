@@ -77,10 +77,8 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
                             onChange={handleChangeInputTodo}
                             placeholder="Digite aqui o nome da tarefa"
                         />
-                        <button className='add-todo'>
-                            <i className="fa-solid fa-circle-plus"></i>
-                            <span>Criar</span>
-                        </button>
+                        
+                        <i className="fa-solid fa-circle-plus"></i>
                     </form>
                     
                     {list.item_set.length === 0?

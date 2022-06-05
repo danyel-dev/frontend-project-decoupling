@@ -39,10 +39,10 @@ export default function ItemComponent({ listId, item, handleDeleteTodo, handleCh
     }
 
     return (
-        <li className='item' style={item.done === true? {backgroundColor: 'rgba(0, 0, 0, 0.25)'}: {backgroundColor: 'rgba(0, 0, 0, 0.1)'}}>
+        <li className='item' style={item.done === true? {backgroundColor: 'rgba(0, 0, 0, 0.2)'}: {backgroundColor: 'rgba(0, 0, 0, 0.05)'}}>
             <div className='checkbox-name'>
                 <input type="checkbox" onChange={PutStatus} checked={item.done} />
-                <p style={item.done === true? {textDecoration: 'line-through'}: {}}>{item.name}</p>
+                <p onClick={PutStatus} style={item.done === true? {textDecoration: 'line-through'}: {}}>{item.name}</p>
             </div>
 
             <div className='date-edit'>

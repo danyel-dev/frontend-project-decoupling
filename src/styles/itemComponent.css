@@ -2,8 +2,9 @@
     display: flex;
     gap: 7px;
     flex-direction: column;
-    padding: 10px;
+    padding: 8px 10px;
     border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 div.checkbox-name {
@@ -16,6 +17,7 @@ div.checkbox-name p {
     font-family: 'sans-serif';
     word-break: break-all;
     font-size: 15px;
+    cursor: pointer;
 }
 
 div.checkbox-name input[type='checkbox'] {
@@ -25,13 +27,13 @@ div.checkbox-name input[type='checkbox'] {
 div.date-edit {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     gap: 10px;
 }
 
 div.date-edit small.date {
     font-weight: bold;
-    color: rgba(0, 0, 0, 0.45);
+    color: rgba(0, 0, 0, 0.35);
     font-family: sans-serif;
 }
 

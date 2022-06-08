@@ -16,7 +16,7 @@ export default function ItemComponent({ listId, item, handleDeleteTodo, handleCh
             }
         }
 
-        axios.put(`https://example-deploy-django.herokuapp.com/item/${item.id}/`, {
+        axios.put(`http://127.0.0.1:8000/item/${item.id}/`, {
             List: item.List,
             name: item.name,
             done: !item.done,
@@ -33,7 +33,7 @@ export default function ItemComponent({ listId, item, handleDeleteTodo, handleCh
             }
         }
 
-        axios.delete(`https://example-deploy-django.herokuapp.com/item/${item.id}/`, config).then(() => {
+        axios.delete(`http://127.0.0.1:8000/item/${item.id}/`, config).then(() => {
             handleDeleteTodo(listId, item.id)
         })
     }

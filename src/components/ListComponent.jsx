@@ -31,6 +31,8 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
 
     const [inputTodo, setInputTodo] = useState("")
     
+    const itemset_count = list.item_set.length
+
     function handleChangeInputTodo(event) {
         setInputTodo(event.target.value)
     }
@@ -44,7 +46,7 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
             }
         }
 
-        axios.post('https://example-deploy-django.herokuapp.com/item/', {
+        axios.post('http://127.0.0.1:8000/item/', {
             List: list.url,
             name: inputTodo,
         }, config).then(({ data }) => {
@@ -57,6 +59,8 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
     
     return (
         <div className="list-container">
+            <small className='number-tasks'>Número de tarefas: {itemset_count}</small>
+
             <h1 className="title-list">{list.name}</h1>
 
             <Button onClick={handleOpen}>Open modal</Button>

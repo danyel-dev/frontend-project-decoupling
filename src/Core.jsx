@@ -18,7 +18,7 @@ export default function Core() {
         }
       }
 
-      var { data } = await axios.get('https://example-deploy-django.herokuapp.com/list/', config);
+      var { data } = await axios.get('http://127.0.0.1:8000/list/', config);
       
       data = data.map(list => {
         list.item_set = list.item_set.reverse()

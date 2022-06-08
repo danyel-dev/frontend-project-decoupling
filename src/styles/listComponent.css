@@ -1,13 +1,38 @@
 .list-container {
     width: 200px;
-    margin-bottom: 30px;
     padding: 30px;
-    background-color: rgba(0, 0, 0, 0.308);
-
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    position: relative;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.number-tasks {
+    position: absolute;
+    top: 7px;
+    left: 10px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+h1.title-list, h1.title-list-modal {
+    font: bold 1.5em sans-serif;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+h1.title-list {
+    margin: 10px 0 0 0;
+}
+
+h1.title-list-modal {
+    margin: 10px 0 25px 0;
 }
 
 .box-modal {
@@ -21,16 +46,6 @@ i.fa-xmark {
     right: 7px;
     padding: 5px;
     cursor: pointer;
-}
-
-h1.title-list, h1.title-list-modal {
-    font: bold 1.5em sans-serif;
-    text-align: center;
-    color: rgba(0, 0, 0, 0.7);
-}
-
-h1.title-list-modal {
-    margin: 10px 0 25px 0;
 }
 
 form.form-add-todo {

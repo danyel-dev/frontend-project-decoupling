@@ -8,6 +8,9 @@ import './styles/core.css'
 
 export default function Core() {
   const [lists, setlists] = useState([])
+  const [user, setUser] = useState([])
+
+  const [inputList, setInputList] = useState('')
 
   useEffect(() => {
     const fetchlists = async () => {
@@ -18,14 +21,16 @@ export default function Core() {
         }
       }
 
-      var { data } = await axios.get('https://example-deploy-django.herokuapp.com/list/', config);
-      
+      var { data } = await axios.get('http://127.0.0.1:8000/list/', config);
+      var { user } = await axios.get('http://127.0.0.1:8000/users/', config);
+
       data = data.map(list => {
         list.item_set = list.item_set.reverse()
         return list
       })
 
       setlists(data)
+      setUser(user)
     } 
     
     fetchlists()
@@ -66,8 +71,36 @@ export default function Core() {
     setlists(newLists)
   }
 
+  function handleSubmitAdditionList(event) {
+    // const config = {
+    //   headers: {
+    //     'content-type': 'Application/json',
+    //     'Authorization': 'Token ' + localStorage.getItem('token')
+    //   }
+    // }
+
+    // axios.post('http://127.0.0.1:8000/List/', {
+    //     name: inputlist,
+    // }, config).then(({ data }) => {
+    //     console.log(data)
+    // })
+
+    // setInputTodo("")
+    event.preventDefault()
+  }
+
+  function changeInput(event) {
+    setInputList(event.target.value)
+  }
+
   return (
     <div className="main">
+      <p>{user.email}</p>
+      <form onSubmit={handleSubmitAdditionList}>
+        <input type="text" value={inputList} onChange={changeInput} placeholder='Crie uma nova tarefa aqui' />
+        <button>click</button>
+      </form>
+
       <div className='main-lists'>
         {lists.map(list =>
           <ListComponent

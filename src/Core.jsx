@@ -8,10 +8,10 @@ import './styles/core.css'
 
 export default function Core() {
   const [lists, setlists] = useState([])
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState({})
 
   const [inputList, setInputList] = useState('')
-
+  
   useEffect(() => {
     const fetchlists = async () => {
       const config = {
@@ -22,20 +22,20 @@ export default function Core() {
       }
 
       var { data } = await axios.get('http://127.0.0.1:8000/list/', config);
-      var { user } = await axios.get('http://127.0.0.1:8000/users/', config);
+      var usuario = await axios.get('http://127.0.0.1:8000/getUser/', config);
 
       data = data.map(list => {
         list.item_set = list.item_set.reverse()
         return list
       })
-
+      
       setlists(data)
-      setUser(user)
+      setUser(usuario.data[0])
     } 
     
     fetchlists()
   }, [])
-
+  
   
   function handleAdditionTodo(listId, Todo) {
     const newLists = lists.map(list => {
@@ -72,20 +72,22 @@ export default function Core() {
   }
 
   function handleSubmitAdditionList(event) {
-    // const config = {
-    //   headers: {
-    //     'content-type': 'Application/json',
-    //     'Authorization': 'Token ' + localStorage.getItem('token')
-    //   }
-    // }
+    const config = {
+      headers: {
+        'content-type': 'Application/json',
+        'Authorization': 'Token ' + localStorage.getItem('token')
+      }
+    }
 
-    // axios.post('http://127.0.0.1:8000/List/', {
-    //     name: inputlist,
-    // }, config).then(({ data }) => {
-    //     console.log(data)
-    // })
+    axios.post('http://127.0.0.1:8000/list/', {
+      user: user.url,
+      name: inputList,
+      item_set: []
+    }, config).then(({ data }) => {
+      console.log(data)
+    })
 
-    // setInputTodo("")
+    setInputList("")
     event.preventDefault()
   }
 
@@ -95,7 +97,7 @@ export default function Core() {
 
   return (
     <div className="main">
-      <p>{user.email}</p>
+      <p>{user.url}</p>
       <form onSubmit={handleSubmitAdditionList}>
         <input type="text" value={inputList} onChange={changeInput} placeholder='Crie uma nova tarefa aqui' />
         <button>click</button>

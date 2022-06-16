@@ -34,7 +34,7 @@ export default function Core() {
     } 
     
     fetchlists()
-  }, [])
+  }, [lists])
   
   
   function handleAdditionTodo(listId, Todo) {

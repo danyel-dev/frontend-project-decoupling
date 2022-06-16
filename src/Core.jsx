@@ -21,8 +21,8 @@ export default function Core() {
         }
       }
 
-      var { data } = await axios.get('http://127.0.0.1:8000/list/', config);
-      var usuario = await axios.get('http://127.0.0.1:8000/getUser/', config);
+      var { data } = await axios.get('https://example-deploy-django.herokuapp.com/list/', config);
+      var usuario = await axios.get('https://example-deploy-django.herokuapp.com/getUser/', config);
 
       data = data.map(list => {
         list.item_set = list.item_set.reverse()
@@ -79,7 +79,7 @@ export default function Core() {
       }
     }
 
-    axios.post('http://127.0.0.1:8000/list/', {
+    axios.post('https://example-deploy-django.herokuapp.com/list/', {
       user: user.url,
       name: inputList,
       item_set: []

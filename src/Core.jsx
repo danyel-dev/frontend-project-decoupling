@@ -34,7 +34,7 @@ export default function Core() {
     } 
     
     fetchlists()
-  }, [lists])
+  }, [])
   
   
   function handleAdditionTodo(listId, Todo) {
@@ -84,7 +84,7 @@ export default function Core() {
       name: inputList,
       item_set: []
     }, config).then(({ data }) => {
-      console.log(data)
+      setlists([data, ...lists])
     })
 
     setInputList("")
@@ -97,7 +97,6 @@ export default function Core() {
 
   return (
     <div className="main">
-      <p>{user.url}</p>
       <form onSubmit={handleSubmitAdditionList}>
         <input type="text" value={inputList} onChange={changeInput} placeholder='Crie uma nova tarefa aqui' />
         <button>click</button>

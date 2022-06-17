@@ -24,7 +24,7 @@ const style = {
 };
 
 
-export default function ListComponent({ list, handleAdditionTodo, handleDeleteTodo, handleChangeStatus }) {
+export default function ListComponent({ list, handleAdditionTodo, handleDeleteTodo, handleChangeStatus, handleDeleteList }) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -57,6 +57,19 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
         event.preventDefault()
     }
     
+    function deleteListAPI() {
+        const config = {
+            headers: {
+              'content-type': 'Application/json',
+              'Authorization': 'Token ' + localStorage.getItem('token')
+            }
+        }
+
+        axios.delete(`http://127.0.0.1:8000/list/${list.id}/`, config).then(({ data }) => {
+            handleDeleteList(list.id)
+        })
+    }
+
     return (
         <div className="list-container">
             <small className='number-tasks'>Número de tarefas: {itemset_count}</small>
@@ -65,7 +78,7 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
 
             <Button onClick={handleOpen}>Open modal</Button>
             
-            <button>Deletar lista de tarefas</button>
+            <button onClick={deleteListAPI}>Deletar lista de tarefas</button>
 
             <Modal
                 open={open}

@@ -95,6 +95,15 @@ export default function Core() {
     setInputList(event.target.value)
   }
 
+  function handleDeleteList(listId) {
+    const newLists = lists.filter(list => {
+      if (list.id !== listId) 
+        return list
+    })
+
+    setlists(newLists)
+  }
+
   return (
     <div className="main">
       <form onSubmit={handleSubmitAdditionList}>
@@ -110,6 +119,7 @@ export default function Core() {
             handleAdditionTodo={handleAdditionTodo}
             handleDeleteTodo={handleDeleteTodo}
             handleChangeStatus={handleChangeStatus}
+            handleDeleteList={handleDeleteList}
           />
         )}
       </div>

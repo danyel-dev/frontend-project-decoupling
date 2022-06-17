@@ -60,9 +60,10 @@ form.form-add-todo {
 form.form-add-todo input {
     width: 100%;
     outline: 0;
-    padding: 10px;
+    padding: 8px 12px;
     font-size: 16px;
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     border-radius: 3px;
 }
 
@@ -76,7 +77,7 @@ form.form-add-todo i {
     position: absolute;
     font-size: 18px;
     right: 12px;
-    top: 11px;
+    top: 9px;
 }
 
 ul.list-todos {

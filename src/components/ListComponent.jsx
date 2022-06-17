@@ -65,7 +65,7 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
 
             <Button onClick={handleOpen}>Open modal</Button>
             
-            <button className='delete-list'>Deletar lista de tarefas</button>
+            <button>Deletar lista de tarefas</button>
 
             <Modal
                 open={open}

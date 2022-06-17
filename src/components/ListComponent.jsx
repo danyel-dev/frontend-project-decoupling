@@ -46,7 +46,7 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
             }
         }
 
-        axios.post('https://example-deploy-django.herokuapp.com/item/', {
+        axios.post('http://127.0.0.1:8000/item/', {
             List: list.url,
             name: inputTodo,
         }, config).then(({ data }) => {
@@ -65,6 +65,8 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
 
             <Button onClick={handleOpen}>Open modal</Button>
             
+            <button className='delete-list'>Deletar lista de tarefas</button>
+
             <Modal
                 open={open}
                 onClose={handleClose}

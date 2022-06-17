@@ -32,7 +32,7 @@ h1.title-list {
 }
 
 h1.title-list-modal {
-    margin: 10px 0 25px 0;
+    margin: 15px 0 25px 0;
 }
 
 .box-modal {
@@ -43,7 +43,7 @@ h1.title-list-modal {
 i.fa-xmark {
     position: absolute;
     top: 5px;
-    right: 7px;
+    right: 8px;
     padding: 5px;
     cursor: pointer;
 }
@@ -58,20 +58,25 @@ form.form-add-todo {
 }
 
 form.form-add-todo input {
+    width: 100%;
     outline: 0;
-    padding: 8px 0 8px 32px;
-    width: 320px;
+    padding: 10px;
     font-size: 16px;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 3px;
+}
+
+form.form-add-todo input:hover {
+    border: 1px solid rgb(128, 9, 175);
+    background-color: rgba(128, 9, 175, 0.03);
 }
 
 form.form-add-todo i {
     color: blueviolet;
     position: absolute;
     font-size: 18px;
-    left: 9px;
-    top: 9px;
+    right: 12px;
+    top: 11px;
 }
 
 ul.list-todos {

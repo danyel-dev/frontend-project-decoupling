@@ -2,12 +2,16 @@ import '../styles/itemComponent.css'
 import axios from 'axios';
 import moment from 'moment';
 import 'moment/locale/pt-br'
+import { useState } from 'react';
 
 
-export default function ItemComponent({ listId, item, handleDeleteTodo, handleChangeStatus }) {
+export default function ItemComponent({ listId, item, handleDeleteTodo, handleChangeStatus, handleChangeTodoName }) {
     moment.locale('pt-br')
     const data = moment(item.created_at).format('LLLL')
     
+    const [editTodoName, setEditTodoName] = useState(false)
+    const [inputTodo, setInputTodo] = useState(item.name)
+
     function PutStatus() {
         const config = {
             headers: {
@@ -16,13 +20,37 @@ export default function ItemComponent({ listId, item, handleDeleteTodo, handleCh
             }
         }
 
-        axios.put(`http://127.0.0.1:8000/item/${item.id}/`, {
+        axios.put(`https://example-deploy-django.herokuapp.com/item/${item.id}/`, {
             List: item.List,
             name: item.name,
             done: !item.done,
         }, config).then(() => {
             handleChangeStatus(listId, item.id)
         })
+    }
+
+    function PutTodoNameAPI(event) {
+        const config = {
+            headers: {
+              'content-type': 'Application/json',
+              'Authorization': 'Token ' + localStorage.getItem('token')
+            }
+        }
+
+        axios.put(`https://example-deploy-django.herokuapp.com/item/${item.id}/`, {
+            List: item.List,
+            name: inputTodo,
+            done: item.done,
+        }, config).then(() => {
+            handleChangeTodoName(listId, item.id, inputTodo)
+        })
+
+        event.preventDefault()
+        setEditTodoName(false)
+    }
+
+    function ChangeValueTodo(event) {
+        setInputTodo(event.target.value)
     }
 
     function DeleteTodo() {
@@ -33,7 +61,7 @@ export default function ItemComponent({ listId, item, handleDeleteTodo, handleCh
             }
         }
 
-        axios.delete(`http://127.0.0.1:8000/item/${item.id}/`, config).then(() => {
+        axios.delete(`https://example-deploy-django.herokuapp.com/item/${item.id}/`, config).then(() => {
             handleDeleteTodo(listId, item.id)
         })
     }
@@ -43,8 +71,16 @@ export default function ItemComponent({ listId, item, handleDeleteTodo, handleCh
             <div className='checkbox-name'>
                 <input type="checkbox" onChange={PutStatus} checked={item.done} />
                 
-                <p onClick={PutStatus} style={item.done === true? {textDecoration: 'line-through'}: {}}>
-                    {item.name}
+                <p style={item.done === true? {textDecoration: 'line-through'}: {}}>
+                    {editTodoName === false?
+                        (<span onClick={PutStatus}>{item.name}</span>):
+                        (<form onSubmit={PutTodoNameAPI}>
+                            <input
+                            type="text"
+                            value={inputTodo}
+                            onChange={ChangeValueTodo} />
+                        </form>)
+                    }
                 </p>
             </div>
 
@@ -52,7 +88,7 @@ export default function ItemComponent({ listId, item, handleDeleteTodo, handleCh
                 <small className='date'>{data}</small>
 
                 <p className='icons'>
-                    <i className="fa-solid fa-pen-to-square"></i>
+                    <i className="fa-solid fa-pen-to-square" onClick={() => setEditTodoName(true)}></i>
                     <i className="fa-solid fa-trash" onClick={DeleteTodo}></i>
                 </p>
             </div>

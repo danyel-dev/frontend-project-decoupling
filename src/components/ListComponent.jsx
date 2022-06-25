@@ -24,7 +24,7 @@ const style = {
 };
 
 
-export default function ListComponent({ list, handleAdditionTodo, handleDeleteTodo, handleChangeStatus, handleDeleteList }) {
+export default function ListComponent({ list, handleAdditionTodo, handleDeleteTodo, handleChangeStatus, handleDeleteList, handleChangeTodoName }) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -46,7 +46,7 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
             }
         }
 
-        axios.post('http://127.0.0.1:8000/item/', {
+        axios.post('https://example-deploy-django.herokuapp.com/item/', {
             List: list.url,
             name: inputTodo,
         }, config).then(({ data }) => {
@@ -56,7 +56,7 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
         setInputTodo("")
         event.preventDefault()
     }
-    
+
     function deleteListAPI() {
         const config = {
             headers: {
@@ -65,7 +65,7 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
             }
         }
 
-        axios.delete(`http://127.0.0.1:8000/list/${list.id}/`, config).then(({ data }) => {
+        axios.delete(`https://example-deploy-django.herokuapp.com/list/${list.id}/`, config).then(({ data }) => {
             handleDeleteList(list.id)
         })
     }
@@ -111,6 +111,7 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
                                     item={item}
                                     handleDeleteTodo={handleDeleteTodo}
                                     handleChangeStatus={handleChangeStatus}
+                                    handleChangeTodoName={handleChangeTodoName}
                                 />
                             )}
                         </ul>

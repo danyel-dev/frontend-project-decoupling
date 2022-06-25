@@ -46,7 +46,7 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
             }
         }
 
-        axios.post('https://example-deploy-django.herokuapp.com/item/', {
+        axios.post('http://127.0.0.1:8000/item/', {
             List: list.url,
             name: inputTodo,
         }, config).then(({ data }) => {
@@ -65,7 +65,7 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
             }
         }
 
-        axios.delete(`https://example-deploy-django.herokuapp.com/list/${list.id}/`, config).then(({ data }) => {
+        axios.delete(`http://127.0.0.1:8000/list/${list.id}/`, config).then(({ data }) => {
             handleDeleteList(list.id)
         })
     }

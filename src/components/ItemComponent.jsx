@@ -16,7 +16,7 @@ export default function ItemComponent({ listId, item, handleDeleteTodo, handleCh
             }
         }
 
-        axios.put(`https://example-deploy-django.herokuapp.com/item/${item.id}/`, {
+        axios.put(`http://127.0.0.1:8000/item/${item.id}/`, {
             List: item.List,
             name: item.name,
             done: !item.done,
@@ -33,7 +33,7 @@ export default function ItemComponent({ listId, item, handleDeleteTodo, handleCh
             }
         }
 
-        axios.delete(`https://example-deploy-django.herokuapp.com/item/${item.id}/`, config).then(() => {
+        axios.delete(`http://127.0.0.1:8000/item/${item.id}/`, config).then(() => {
             handleDeleteTodo(listId, item.id)
         })
     }
@@ -42,7 +42,10 @@ export default function ItemComponent({ listId, item, handleDeleteTodo, handleCh
         <li className='item' style={item.done === true? {backgroundColor: 'rgba(0, 0, 0, 0.2)'}: {backgroundColor: 'rgba(0, 0, 0, 0.05)'}}>
             <div className='checkbox-name'>
                 <input type="checkbox" onChange={PutStatus} checked={item.done} />
-                <p onClick={PutStatus} style={item.done === true? {textDecoration: 'line-through'}: {}}>{item.name}</p>
+                
+                <p onClick={PutStatus} style={item.done === true? {textDecoration: 'line-through'}: {}}>
+                    {item.name}
+                </p>
             </div>
 
             <div className='date-edit'>

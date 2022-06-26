@@ -8,7 +8,7 @@ import { useState } from 'react';
 export default function ItemComponent({ listId, item, handleDeleteTodo, handleChangeStatus, handleChangeTodoName }) {
     moment.locale('pt-br')
     const data = moment(item.created_at).format('LLLL')
-    
+
     const [editTodoName, setEditTodoName] = useState(false)
     const [inputTodo, setInputTodo] = useState(item.name)
 
@@ -69,6 +69,8 @@ export default function ItemComponent({ listId, item, handleDeleteTodo, handleCh
     return (
         <li className='item' style={item.done === true? {backgroundColor: 'rgba(0, 0, 0, 0.2)'}: {backgroundColor: 'rgba(0, 0, 0, 0.05)'}}>
             <div className='checkbox-name'>
+                <span className='numberTodo'>#{item.number}</span>
+
                 <input type="checkbox" onChange={PutStatus} checked={item.done} />
                 
                 <p style={item.done === true? {textDecoration: 'line-through'}: {}}>

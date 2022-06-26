@@ -12,6 +12,13 @@ div.checkbox-name {
     align-items: center;
 }
 
+span.numberTodo {
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-right: 7px;
+    font-size: 15px;
+}
+
 div.checkbox-name p {
     margin: 0 0 0 7px;
     font-family: 'sans-serif';

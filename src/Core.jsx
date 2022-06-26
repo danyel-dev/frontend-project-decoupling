@@ -11,7 +11,8 @@ export default function Core() {
   const [user, setUser] = useState({})
 
   const [inputList, setInputList] = useState('')
-  
+  const [number, setNumber] = useState(1)
+
   useEffect(() => {
     const fetchlists = async () => {
       const config = {
@@ -20,15 +21,19 @@ export default function Core() {
           'Authorization': 'Token ' + localStorage.getItem('token')
         }
       }
-
+      // https://example-deploy-django.herokuapp.com/
+      // http://127.0.0.1:8000/
       var { data } = await axios.get('https://example-deploy-django.herokuapp.com/list/', config);
       var usuario = await axios.get('https://example-deploy-django.herokuapp.com/getUser/', config);
 
       data = data.map(list => {
         list.item_set = list.item_set.reverse()
+        list.item_set.map((item, indice) => {
+          item.number = indice + 1
+          return item
+        })
         return list
       })
-      
       setlists(data)
       setUser(usuario.data[0])
     } 

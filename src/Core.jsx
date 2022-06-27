@@ -11,7 +11,6 @@ export default function Core() {
   const [user, setUser] = useState({})
 
   const [inputList, setInputList] = useState('')
-  const [number, setNumber] = useState(1)
 
   useEffect(() => {
     const fetchlists = async () => {
@@ -23,8 +22,8 @@ export default function Core() {
       }
       // https://example-deploy-django.herokuapp.com/
       // http://127.0.0.1:8000/
-      var { data } = await axios.get('https://example-deploy-django.herokuapp.com/list/', config);
-      var usuario = await axios.get('https://example-deploy-django.herokuapp.com/getUser/', config);
+      var { data } = await axios.get('http://127.0.0.1:8000/list/', config);
+      var usuario = await axios.get('http://127.0.0.1:8000/getUser/', config);
 
       data = data.map(list => {
         list.item_set = list.item_set.reverse()
@@ -84,7 +83,7 @@ export default function Core() {
       }
     }
 
-    axios.post('https://example-deploy-django.herokuapp.com/list/', {
+    axios.post('http://127.0.0.1:8000/list/', {
       user: user.url,
       name: inputList,
       item_set: []
@@ -101,11 +100,7 @@ export default function Core() {
   }
 
   function handleDeleteList(listId) {
-    const newLists = lists.filter(list => {
-      if (list.id !== listId) 
-        return list
-    })
-
+    const newLists = lists.filter(list => list.id !== listId)
     setlists(newLists)
   }
 

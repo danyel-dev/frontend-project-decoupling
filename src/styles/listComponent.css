@@ -60,16 +60,17 @@ form.form-add-todo {
 form.form-add-todo input {
     width: 100%;
     outline: 0;
-    padding: 8px 12px;
+    padding: 8px 35px 8px 12px;
     font-size: 16px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     border-radius: 3px;
+    transition: .2s all;
 }
 
 form.form-add-todo input:hover {
-    border: 1px solid rgb(128, 9, 175);
-    background-color: rgba(128, 9, 175, 0.03);
+    border: 1px solid rgb(109, 9, 175);
+    background-color: rgba(98, 0, 255, 0.07);
 }
 
 form.form-add-todo i {

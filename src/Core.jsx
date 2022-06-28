@@ -20,8 +20,7 @@ export default function Core() {
           'Authorization': 'Token ' + localStorage.getItem('token')
         }
       }
-      // https://example-deploy-django.herokuapp.com/
-      // http://127.0.0.1:8000/
+
       var { data } = await axios.get('http://127.0.0.1:8000/list/', config);
       var usuario = await axios.get('http://127.0.0.1:8000/getUser/', config);
 
@@ -38,43 +37,8 @@ export default function Core() {
     } 
     
     fetchlists()
-  }, [])
+  }, [lists])
   
-  
-  function handleAdditionTodo(listId, Todo) {
-    const newLists = lists.map(list => {
-      if(list.id === listId) 
-        list.item_set.unshift(Todo)
-      return list
-    })
-    
-    setlists(newLists)
-  }
-
-  function handleDeleteTodo(listId, todoId) {
-    const newLists = lists.map(list => {
-      if (list.id === listId) 
-        list.item_set = list.item_set.filter(item => item.id !== todoId)
-      return list
-    })
-    
-    setlists(newLists)
-  }
-  
-  function handleChangeStatus(listId, todoId) {
-    const newLists = lists.map(list => {
-      if (list.id === listId) { 
-        list.item_set = list.item_set.map(item => {
-          if(item.id === todoId) 
-            item.done = !item.done
-          return item
-        })
-      } return list
-    })
-    
-    setlists(newLists)
-  }
-
   function handleSubmitAdditionList(event) {
     const config = {
       headers: {
@@ -99,27 +63,6 @@ export default function Core() {
     setInputList(event.target.value)
   }
 
-  function handleDeleteList(listId) {
-    const newLists = lists.filter(list => list.id !== listId)
-    setlists(newLists)
-  }
-
-  function handleChangeTodoName(listId, todoId, nameTodo) {
-    const updateList = lists.map(list => {
-      if(list.id === listId) {
-        list.item_set.map(item => {
-          if(item.id === todoId) 
-            item.name = nameTodo
-          return item
-        })
-      }
-
-      return list
-    })
-
-    setlists(updateList)
-  }
-
   return (
     <div className="main">
       <form onSubmit={handleSubmitAdditionList}>
@@ -132,11 +75,6 @@ export default function Core() {
           <ListComponent
             key={list.id}
             list={list}
-            handleAdditionTodo={handleAdditionTodo}
-            handleDeleteTodo={handleDeleteTodo}
-            handleChangeStatus={handleChangeStatus}
-            handleDeleteList={handleDeleteList}
-            handleChangeTodoName={handleChangeTodoName}
           />
         )}
       </div>

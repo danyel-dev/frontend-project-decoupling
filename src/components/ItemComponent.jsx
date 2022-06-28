@@ -24,9 +24,7 @@ export default function ItemComponent({ listId, item, handleDeleteTodo, handleCh
             List: item.List,
             name: item.name,
             done: !item.done,
-        }, config).then(() => {
-            handleChangeStatus(listId, item.id)
-        })
+        }, config)
     }
 
     function PutTodoNameAPI(event) {
@@ -41,9 +39,7 @@ export default function ItemComponent({ listId, item, handleDeleteTodo, handleCh
             List: item.List,
             name: inputTodo,
             done: item.done,
-        }, config).then(() => {
-            handleChangeTodoName(listId, item.id, inputTodo)
-        })
+        }, config)
 
         event.preventDefault()
         setEditTodoName(false)
@@ -61,9 +57,7 @@ export default function ItemComponent({ listId, item, handleDeleteTodo, handleCh
             }
         }
 
-        axios.delete(`http://127.0.0.1:8000/item/${item.id}/`, config).then(() => {
-            handleDeleteTodo(listId, item.id)
-        })
+        axios.delete(`http://127.0.0.1:8000/item/${item.id}/`, config)
     }
 
     return (

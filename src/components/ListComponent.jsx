@@ -49,9 +49,7 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
         axios.post('http://127.0.0.1:8000/item/', {
             List: list.url,
             name: inputTodo,
-        }, config).then(({ data }) => {
-            handleAdditionTodo(list.id, data)
-        })
+        }, config)
 
         setInputTodo("")
         event.preventDefault()
@@ -65,9 +63,7 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
             }
         }
 
-        axios.delete(`http://127.0.0.1:8000/list/${list.id}/`, config).then(({ data }) => {
-            handleDeleteList(list.id)
-        })
+        axios.delete(`http://127.0.0.1:8000/list/${list.id}/`, config)
     }
 
     return (
@@ -109,9 +105,6 @@ export default function ListComponent({ list, handleAdditionTodo, handleDeleteTo
                                     key={item.id}
                                     listId={list.id}
                                     item={item}
-                                    handleDeleteTodo={handleDeleteTodo}
-                                    handleChangeStatus={handleChangeStatus}
-                                    handleChangeTodoName={handleChangeTodoName}
                                 />
                             )}
                         </ul>

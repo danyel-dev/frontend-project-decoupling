@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import LoginComponent from './components/LoginComponent'
-import Core from './Core';
+// import LoginComponent from './pages/LoginComponent';
+import Home from './pages/Home';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Core />
+    <Home />
   </React.StrictMode>
 );

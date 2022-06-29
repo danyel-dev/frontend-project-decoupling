@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
 
-import Core from '../Core'
+import Home from "./Home";
 
 
 export default function LoginComponent() {
@@ -49,13 +49,13 @@ export default function LoginComponent() {
 
                 <button>Submit</button>
             </form>
-        )    
+        ); 
     } else {
         return (
-            <div>
-                <Core />
-                <button onClick={logout}>Logout</button>
-            </div>
-        )
+            <>
+                <Home />
+                {/* <button onClick={logout}>Logout</button> */}
+            </>
+        );
     }
 };
